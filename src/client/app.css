@@ -1,0 +1,761 @@
+.html_body {
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+}
+
+.app__container {
+    background-color: #7F7C6A;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+/* Landing Page */
+
+.landing__container {
+    background-color: #7F7C6A;
+}
+
+.landing__title {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 32px;
+}
+
+.landing__subtitle {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.landing__menu {
+    display: flex;
+}
+
+.landing__menu_left_side {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+
+.landing__title_container {
+    background-color: #EAA754;
+    border: 4px solid black;
+    border-radius: 20px;
+    margin: 10px 10px 10px 0px;
+    padding: 10px 10px 10px 10px;
+}
+
+.landing__formsContainer {
+    display: flex;
+    padding: 10px 10px 10px 0px;
+    border-radius: 25px;
+}
+
+.landing__createRoom_div {
+    background-color: #EAA754;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+    margin-right: 25px;
+    border: 4px solid black;
+}
+
+.landing__createRoom_header_div {
+    padding: 2px 15px 2px 15px;
+    border-radius: 7px;
+    background-color: white;
+    margin-right: 45px;
+}
+
+.landing__createGame_header {
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+}
+
+.landing__createRoom_form {
+    display: flex;
+    flex-direction: column;
+    background-color: #7F7C6A;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+.landing__joinRoom_div {
+    background-color: #EAA754;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+    border: 4px solid black;
+}
+
+.landing__joinRoom_header_div {
+    padding: 2px 15px 2px 15px;
+    border-radius: 7px;
+    background-color: white;
+    margin-right: 45px;
+}
+
+.landing__joinGame_header {
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+}
+
+.landing__joinRoom_form {
+    display: flex;
+    flex-direction: column;
+    background-color: #7F7C6A;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+}
+
+.landing__inputField {
+    margin: 2px 15px 2px 15px;
+    width: 200px;
+    height: 25px;
+    border-radius: 6px;
+    border: 2px solid black;
+}
+
+.landing__inputField:focus { outline: 0; }
+
+.landing__inputField:hover {
+    margin: 2px 10px 2px 10px;
+    width: 208px;
+    height: 23px;
+    border-radius: 6px;
+    border: 3px solid blueviolet;
+}
+
+#landing__error_div {
+    background-color: white;
+    border-radius: 10px;
+    max-width: 306px;
+    margin: 20px 10px 10px 10px;
+}
+
+#landing__error_text {
+    color: red;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.landing__menu_right_side {
+    display: flex;
+    flex-direction: column;
+    background-color: #EAA754;
+    margin: 10px 25px 10px 0px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 20px;
+    border: 4px solid black;
+    margin-left: 15px;
+}
+
+.landing__form_helper_summary {
+    padding: 0 0 0 0px;
+    margin: 0 0 0 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.landing__white_div {
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px 10px 10px 10px;
+}
+
+.landing__text_decoration_div {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    background-color: #7F7C6A;
+    border-radius: 12px;
+}
+
+#landing__newGameBtn {
+    background-color: limegreen;
+}
+
+#landing__joinGameBtn {
+    background-color: deepskyblue;
+}
+
+.landing__btnClient {
+    font-family: geneva;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid black;
+    margin: 5px 0px 2px 55px;
+}
+
+.landing__btnClient:hover {
+    width: 160px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid white;
+    color: white;
+    margin: 5px 0px 2px 50px;
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
+.landing__btnClient:focus { outline: 0; }
+
+.landing__rules_div {
+    padding-bottom: 10px;
+}
+
+.rules {
+    margin: 10px 25px 10px 25px;
+    padding: 5px 5px 5px 5px;
+    background-color: #EEE5E9;
+    border-radius: 8px;
+}
+
+/* Game Room */
+
+.gameRoom__container {
+    height: 100vh;
+}
+
+.navbar {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #EAA754;
+    padding: 0px 0px 0px 0px;
+}
+
+.navbar_blackbar {
+    width: 6px;
+    background-color: black;
+}
+
+#color_bar {
+    width: 20px;
+    height: 60px;
+    background-color: black;
+    padding: 0px 1px 0px 1px;
+}
+
+.navbar_title {
+    padding: 0;
+    margin: 0;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 20px;
+    font-style: bold;
+}
+
+.nav_info_div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAA754;
+}
+
+.stats_header {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+}
+
+.imgInHand:hover {
+    cursor: pointer;
+}
+
+.container {
+    height: calc(100% - 100px);
+    padding: 10px 10px 0px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 5px solid black;
+    border-radius: 15px;
+    overflow-y: scroll;
+}
+
+#separator {
+    background-color: black;
+    width: 10px;
+    height: 50px;
+    border-radius: 8px;
+}
+
+.nav_h1 {
+    color: black;
+}
+
+#nav_ul {
+    list-style-type: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    overflow: hidden;
+}
+
+.nav_li {
+    float: left;
+    padding: 10px 20px 10px 20px;
+    margin: 0px 0px 0px 0px;
+}
+
+#color_title {
+    background-color: #EAA754;
+}
+
+#color_egg {
+    background-color: #EEE5E9;
+}
+
+#color_fold {
+    background-color: #FE3D20;
+}
+
+#color_play {
+    background-color: #6DF260;
+}
+
+#color_battle {
+    background-color: #4392F1;
+}
+
+#color_derby {
+    background-color: #9800FF;
+}
+
+#color_pass {
+    background-color: orange;
+}
+
+.buttons_menu {
+    display: flex;
+    height: 35px;
+}
+
+.buttons {
+  background-color: white; /* Green */
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px 10px 20px;
+  margin: 0px 10px 0px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  outline: 0;
+  font-family: geneva;
+  font-weight: normal;
+  height: 35px;
+}
+
+#playButton, #startGameButton {
+  background-color: white;
+  color: black;
+  border: 4px solid limegreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#playButton:hover, #startGameButton:hover {
+  background-color: limegreen;
+  color: white;
+}
+
+#nineButton {
+  background-color: white;
+  color: black;
+  border: 4px solid blueviolet;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#nineButton:hover {
+  background-color: blueviolet;
+  color: white;
+}
+
+#chat_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 140px;
+    padding: 0px 0px 0px 0px;
+    margin-left: 15px;
+    border-radius: 10px;
+    margin-right: 0px;
+}
+
+#passButton, #chat_button {
+  background-color: white;
+  color: black;
+  border: 4px solid tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#passButton:hover, #chat_button:hover {
+  background-color: tomato;
+  color: white;
+}
+
+#foldButton {
+  background-color: white;
+  color: black;
+  border: 4px solid crimson;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#foldButton:hover {
+    background-color: crimson;
+}
+
+#battleButton {
+  background-color: white;
+  color: black;
+  border: 4px solid deepskyblue;
+  outline: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#battleButton:hover {
+  background-color: deepskyblue;
+  color: white;
+}
+
+.cardPile_container {
+    margin: 10px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    display: flex;
+    height: 35px;
+}
+
+.cardPile_text {
+    font-family: geneva;
+    font-weight: normal;
+    width: 105px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAA754;
+    border-radius: 10px;
+    margin: 0px 0px 0px 0px;
+}
+
+.cardPileRow {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+    overflow-x: scroll;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.cardPileRow::-webkit-scrollbar {
+    display: none;
+}
+
+.move_div {
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
+    margin-right: 10px;
+    display: inline-block;
+    max-height: 150px;
+}
+
+.move_div_battleSandwich {
+    border-radius: 10px;
+    padding: 0px 0px 5px 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.move_card_text_top {
+    margin: 0px 0px 0px 5px;
+    color: white;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.move_card_text_top_battle {
+    margin: 5px 0px 5px 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.move_card_div_bottom {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.move_card_text_bottom {
+    margin: 1px 5px 0px 0px;
+    color: black;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 14px;
+}
+
+.move_card_img_div {
+    display: flex;
+}
+
+.move_card_img {
+    height: 92px;
+    width: 65px;
+    margin: 0px 5px 0px 5px;
+}
+
+.announcement_div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.announcement_text {
+    background-color: #7F7C6A;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    padding: 0px 20px 0px 20px;
+    font-family: geneva;
+    font-weight: normal;
+}
+
+.buttons_container {
+    height: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yourHand_text {
+    font-family: geneva;
+    font-weight: normal;
+    margin: 0px 0px 0px 0px;
+    width: 105px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAA754;
+    border-radius: 10px;
+}
+
+.Joker_menu {
+    margin: 0px 0px 0px 0px;
+    width: calc(100% - 10px);
+    position: relative;
+    z-index: 1;
+}
+
+.Joker_cur_option {
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 12px;
+    margin: 0px 0px 4px 0px;
+    background-color: lightgrey;
+    border-radius: 2px;
+    padding: 0px 0px 0px 10px;
+}
+
+.Joker_options {
+    width: 85px;
+    margin: 0px 0px 0px 0px;
+    background-color: lightgrey;
+    border-radius: 2px;
+    position: fixed;
+    z-index: 2;
+}
+
+.Joker_option {
+    margin: 0px 0px 0px 0px;
+    border-radius: 2px;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 0px 0px 0px 10px;
+}
+
+.Joker_option:hover {
+    margin: 0px 0px 0px 0px;
+    background-color: deepskyblue;
+}
+
+.peeps_and_clock {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Players_div {
+    display: flex;
+}
+
+.Player_details_div {
+    margin: 0px 10px 0px 0px;
+    background-color: green;
+    height: 70px;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    font-family: geneva;
+    padding: 5px 8px 0px 8px;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.clock_div {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 0px 8px 0px 8px;
+}
+
+.clock {
+    background-color: #EAA754;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 30px;
+    line-height: 43px;
+    border: 3px solid black;
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+    color: black;
+    font-family: geneva;
+    font-size: 16px;
+}
+
+.clock_text {
+    background-color: #7F7C6A;
+    font-size: 35px;
+    line-height: 45px;
+    margin: 0px 10px 0px 0px;
+}
+
+.hand_div {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hand_div::-webkit-scrollbar {
+  display: none;
+}
+
+.card_in_hand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px 2px 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: white;
+    margin-right: 8px;
+}
+
+.card_in_hand_img {
+    width: 65px;
+    height: 92px;
+    margin: 5px 5px 5px 5px;
+    padding: 0px 0px 0px 0px;
+}
+
+/* Chat */
+
+.chat_container {
+    height: calc(100% - 210px);
+}
+
+.chat_input_and_button_div {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.chat_input {
+    width: 500px;
+    height: 34px;
+    border-radius: 10px;
+    border: 3px solid black;
+    font-size: 15px;
+    outline: 0;
+    padding: 0px 0px 0px 10px;
+}
+
+.chat_list_div {
+    background-color: #EAA754;
+    margin-top: 10px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+    border: 2px solid black;
+    max-height: calc(100% - 100px);
+    overflow-y: scroll;
+}
+
+.Chat_list_item {
+    margin: 0px 0px 5px 0px;
+    font-family: geneva;
+    font-weight: normal;
+    font-size: 14px;
+}
