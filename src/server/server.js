@@ -1,27 +1,34 @@
-"use strict";
+const { createGame } = require("./api/createGame");
+const { joinGame }  = require("./api/joinGame");
+const { startGame }  = require("./api/startGame");
+const { playMove }  = require("./api/playMove");
+const { sendChatMsg }  = require("./api/sendChatMsg");
+const { timeRanOut }  = require("./api/timeRanOut");
+const { leaveGame }  = require("./api/leaveGame");
+const { rejoinGame }  = require("./api/rejoinGame");
 
-let express = require('express');
-const path = require('path');
 const dotenv = require('dotenv');
-let mongoose = require("mongoose");
-let { WebSocketServer } = require('ws');
-const serverRoutes = require("./api/routes.js");
+const mongoose = require("mongoose");
+const { WebSocketServer } = require('ws');
 
 dotenv.config();
 
 const clientToServerMsgTypeToRoute = {
-    "CREATE_GAME": serverRoutes.createGame,
-    "JOIN_GAME": serverRoutes.joinGame,
-    "LEAVE_GAME": serverRoutes.leaveGame,
-    "REJOIN_GAME": serverRoutes.rejoinGame,
-    "SEND_CHAT_MSG": serverRoutes.sendChatMsg,
-    "START_GAME": serverRoutes.startGame,
-    "PLAY_MOVE": serverRoutes.playMove
+    "CREATE_GAME": createGame,
+    "JOIN_GAME": joinGame,
+    "START_GAME": startGame,
+    "PLAY_MOVE": playMove,
+    "SEND_CHAT_MSG": sendChatMsg,
+    "TIME_RAN_OUT": timeRanOut,
+    "LEAVE_GAME": leaveGame,
+    "REJOIN_GAME": rejoinGame,
 }
 
 const setupServer = async () => {
+    console.log("v2.0.1");
+
     try {
-        let connectionString = process.env.MONGODB_URI;
+        const connectionString = process.env.MONGODB_URI;
         await mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
         console.log("Connected to Mongo");
     } catch (err) {
@@ -33,32 +40,27 @@ const setupServer = async () => {
     const wss = new WebSocketServer({ port: ws_port });
     console.log("WebSocket server started on: " + ws_port);
 
-    wss.on('connection', (ws, req) => {
-        ws.on('message', async (data) => {
+    wss.on('connection', (ws) => {
+        ws.on('error', (err) => {
+            console.log("ERROR - ws");
+            console.log(err);
+        });
+
+        ws.on('message', (data) => {
             try {
                 const clientMsg = JSON.parse(data);
                 if (clientMsg.type in clientToServerMsgTypeToRoute) {
                     const handleMsg = clientToServerMsgTypeToRoute[clientMsg.type];
                     handleMsg(clientMsg.data, ws, wss);
+                } else {
+                    console.log(`'${clientMsg.type}' is not a valid msg type`);
                 }
             } catch (err) {
-                console.log("ERROR! \n")
-                console.log(err)
+                console.log("ERROR - handle msg");
+                console.log(err);
             }
         });
     });
 };
 
-setupServer(); // Run server
-
-const setupServer2 = async () => {
-    let app2 = express();
-    app2.use(express.static(`${__dirname}/../../dist`));
-
-    const http_port = process.env.HTTP_PORT;
-    app2.listen(http_port, () => {
-        console.log("HTTP server started on: " + http_port);
-    });
-};
-
-setupServer2(); // Run the server
+setupServer();

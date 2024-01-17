@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../app.css';
-import axios from "axios";
 
 class Landing extends Component {
     constructor(props) {
@@ -11,7 +10,7 @@ class Landing extends Component {
             deckSize: "",
             gameSize: "",
             handSize: "",
-            refuelNum: "",
+            refuelNumber: "",
 
             username_j: "",
             roomID_j: "",
@@ -23,30 +22,24 @@ class Landing extends Component {
     handleServerToClientMsgByType = (msg) => {
         const serverToClientMsgTypeToHandler = {
             "CREATE_GAME__SUCCESS": () => {
-                //console.log("got -> CREATE_GAME__SUCCESS");
                 this.setState({init_error: null});
                 this.props.changePage("game_room", this.state.username_c, this.state.roomID_c, msg.data.userID, msg.data, false);
             },
             "CREATE_GAME__ERROR": () => {
-                //console.log("got -> CREATE_GAME__ERROR");
                 this.setState({init_error: msg.data.error});
             },
             "JOIN_GAME__SUCCESS": () => {
-                //console.log("got -> JOIN_GAME__SUCCESS");
                 this.setState({init_error: null});
                 this.props.changePage("game_room", this.state.username_j, this.state.roomID_j, msg.data.userID, msg.data, false);
             },
             "JOIN_GAME__ERROR": () => {
-                //console.log("got -> JOIN_GAME__ERROR");
                 this.setState({init_error: msg.data.error});
             },
             "REJOIN_GAME__SUCCESS": () => {
-                //console.log("got -> REJOIN_GAME__SUCCESS");
                 this.setState({init_error: null});
                 this.props.changePage("game_room", msg.data.username, msg.data.roomID, msg.data.userID, msg.data, true);
             },
             "REJOIN_GAME__ERROR": () => {
-                //console.log("got -> REJOIN_GAME__ERROR");
                 localStorage.setItem('KingOfTheHill__roomID', "");
                 localStorage.setItem('KingOfTheHill__username', "");
                 localStorage.setItem('KingOfTheHill__userID', "");
@@ -111,8 +104,8 @@ class Landing extends Component {
         this.setState({handSize: e.target.value});
     }
 
-    change__refuelNum = (e) => {
-        this.setState({refuelNum: e.target.value});
+    change__refuelNumber = (e) => {
+        this.setState({refuelNumber: e.target.value});
     }
 
     change__username_j = (e) => {
@@ -127,16 +120,15 @@ class Landing extends Component {
         const clientMsg = {
             type: "CREATE_GAME",
             data: {
-                lord: this.state.username_c,
-                roomID: this.state.roomID_c,
+                lord: this.state.username_c.trim(),
+                roomID: this.state.roomID_c.trim(),
                 deckSize: this.state.deckSize,
                 gameSize: this.state.gameSize,
                 handSize: this.state.handSize,
-                refuelNum: this.state.refuelNum
+                refuelNumber: this.state.refuelNumber.trim(),
             }
         }
         try {
-            //console.log('sent -> CREATE_GAME');
             this.props.webSocket.send(JSON.stringify(clientMsg))
         } catch (err) {
             console.log(err);
@@ -148,12 +140,11 @@ class Landing extends Component {
         const clientMsg = {
             type: "JOIN_GAME",
             data: {
-                username: this.state.username_j,
-                roomID: this.state.roomID_j
+                username: this.state.username_j.trim(),
+                roomID: this.state.roomID_j.trim(),
             }
         }
         try {
-            //console.log('sent -> JOIN_GAME');
             this.props.webSocket.send(JSON.stringify(clientMsg))
         } catch (err) {
             console.log(err);
@@ -202,7 +193,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="username_c"
-                                        placeholder=" Username"
+                                        placeholder="Username"
                                         value={this.state.username_c}
                                         onChange={this.change__username_c}
                                     />
@@ -211,7 +202,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="roomID_c"
-                                        placeholder=" Room Code"
+                                        placeholder="Room Code"
                                         value={this.state.roomID_c}
                                         onChange={this.change__roomID_c}
                                     />
@@ -220,7 +211,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="gameSize"
-                                        placeholder=" Number of players"
+                                        placeholder="Number of players"
                                         value={this.state.gameSize}
                                         onChange={this.change__gameSize}
                                     />
@@ -229,7 +220,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="deckSize"
-                                        placeholder=" Number of decks"
+                                        placeholder="Number of decks"
                                         value={this.state.deckSize}
                                         onChange={this.change__deckSize}
                                     />
@@ -238,7 +229,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="handSize"
-                                        placeholder=" Hand size"
+                                        placeholder="Hand size"
                                         value={this.state.handSize}
                                         onChange={this.change__handSize}
                                     />
@@ -246,10 +237,10 @@ class Landing extends Component {
                                     <input
                                         className="landing__inputField"
                                         type="text"
-                                        name="refuelNum"
-                                        placeholder=" Refuel number"
-                                        value={this.state.refuelNum}
-                                        onChange={this.change__refuelNum}
+                                        name="refuelNumber"
+                                        placeholder="Refuel number"
+                                        value={this.state.refuelNumber}
+                                        onChange={this.change__refuelNumber}
                                     />
 
                                     <div className="landing__btnClient"
@@ -271,7 +262,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="username_j"
-                                        placeholder=" Username"
+                                        placeholder="Username"
                                         value={this.state.username_j}
                                         onChange={this.change__username_j}
                                     />
@@ -280,7 +271,7 @@ class Landing extends Component {
                                         className="landing__inputField"
                                         type="text"
                                         name="roomID_j"
-                                        placeholder=" Existing Room Code"
+                                        placeholder="Existing Room Code"
                                         value={this.state.roomID_j}
                                         onChange={this.change__roomID_j}
                                     />
@@ -304,13 +295,13 @@ class Landing extends Component {
 
                     <div className="landing__menu_right_side">
                         <p className="landing__form_helper_summary">
-                            The Game size is the amount of players that are going to be playing.
+                            Give yourself a fun username. Come up with a simple passcode people can use to join your game.
                             You can play with up to 9 decks. Each deck is 54 cards, 52 cards plus 2 jokers.
                             Hand size is the amount of cards in your hand that you will be playing with.
                             The Refuel number determines when your hand gets replenished by the deck:
-                            when you have the Refuel number of cards in your hand you will go back to the
-                            Hand Size number of cards at the end of the round, unless there are no more cards in the deck.
-                            Happy Playing, Battling, Derbying and Sandwiching!
+                            when you have the Refuel number of cards in your hand at the end of a round you will go back
+                            to the Hand Size number of cards at the beginning of the next round - unless there are no more
+                            cards left in the deck. Happy Playing, Battling, Derbying and Sandwiching!
                         </p>
                     </div>
                 </div>
@@ -319,41 +310,52 @@ class Landing extends Component {
                     <h1 className="rules">The Official Rule Book:</h1>
 
                     <p className="rules">
-                        King of the Hill or Sandwich or Trump was originally created for 2-3-4-5 player games,
-                        but it can be played with really as many players as you like. Also, the original name
-                        of the game was Trump (before he got elected) because the Ace is an overpowering trump
-                        card that automatically wins you the hand if played in a sequence or derby (and can't
-                        be battled except if in a battle already).
+                        King of the Hill, AKA Trump, was originally created for 3 players.
+                        I grew up with a younger brother and sister and invented this game on a road trip (funny enough passing through Vegas) becasue
+                        there weren't (and still aren't) many board or card games that are fun or can even be played with 3 people.
+                        This game, in my opinion, is the most
+                        fun when played with 3. It also works very very well with 4 or 5 players. 6 players and above
+                        starts to get exponentially unpredictable. The more players you add, I've found, the quicker
+                        the rounds can be, the more likely piles won't grow, and most, if not all of the time, only a
+                        fraction of the group participates due to people battling,
+                        sandwiching, and acing before other players can join in on the ruckus. So proceed with caution when considering playing large games, you can find yourself not playing a move for many turns.
+                        On the opposite end of the spectrum: 2... is boring. Unless you like plain, calculated, mano a mano long game precision, steer clear of 2.
+                        2 may ruin the game for you both; you will see why after just one, maybe two, game.
                     </p>
 
-                    <h3 className="rules">-Object of the game:</h3>
+                    <h3 className="rules">Object of the game:</h3>
 
                     <p className="rules">
                         Win the most amount of cards or get to the objective set amount of cards first (say you
                         play first to win 50 cards). Win cards by winning play piles. Number of cards in the pile
-                        won = the number of cards added to your score.
+                        won = the number of points added to your score. In this online game whoever has the most
+                        points when everyone or everyone but one player runs out of cards, wins.
                     </p>
 
-                    <h3 className="rules">-Set up:</h3>
+                    <h3 className="rules">Set up:</h3>
 
                     <p className="rules">
-                        Each player starts off with your choice of hand size, 10 or 12 cards is normal. You also
-                        need to set a refuel number so that, after a round, players with the refuel amount of cards
-                        remaining in their hand can grab more from the deck until they have the hand-size number.
-                        A standard refuel number is half the hand size plus a card or two, so starting with 12 cards
+                        1. Each player starts off with the Hand size amount of cards, 10 or 12 cards is normal.
+                        2. Choose a Refuel number: after each round, players with the Refuel number amount of cards
+                        remaining in their hand gets their hand replenished to full = Hand size.
+                        A standard Refuel number is half the Hand size plus a card or two, so starting with 12 cards
                         I would use 7 as a refuel number (for say 15 I'd do 8 or 9).
+                        3. Decide how you play: first to a chosen number of points or highest score when everyone or
+                        everyone but one player runs out of cards. Online it's highest score wins.
+                        4. Begin!
                     </p>
 
-                    <h3 className="rules">-Directions:</h3>
+                    <h3 className="rules">Directions:</h3>
 
                     <p className="rules">
-                        To start the game everybody participates in a Battle (in the app though, the person who
-                        creates the room starts the game). After, follow Order of Play and normal play begins.
-                        Higher cards are better to start the game. When playing with a 12 card starting hand and
-                        after a round you find yourself with 7 cards or less, you Refuel. Refueling only takes
+                        To start the game everybody participates in a Battle (online the person who
+                        creates the room starts the game). Higher cards are better to start the game. When playing with a 7 card Refuel number,
+                        if you find yourself with 7 cards or less at round's end pick up cards (rotate picking
+                        up cards one at a time with others who are also replenishing) to the Hand size amount. Refueling only takes
                         place after the round is over/before the next round. Winner of the previous round plays
-                        first/starts the next round. Play always goes clockwise, and always continues clockwise from
-                        whoever played last. The winner is the last person still in who hasn't Folded or been knocked
+                        first/starts the next round. Play always goes and continues clockwise from
+                        whoever played last but players can play out of turn if they are Battling or Sandwiching.
+                        A game is comprised of many rounds. The winner of each round is simply the winner of a Battle, the player of an Ace (or multiple Aces if in a Derby) or the last person still in who hasn't Folded or been knocked
                         out by a Sandwich. If so he/she wins the round, he/she adds the total amount of cards from the
                         pile to their score. The winner then plays first in the next hand. Winner of the game is first
                         to reach a decided score tally or have the highest score once the deck runs out and there aren’t
@@ -362,7 +364,7 @@ class Landing extends Component {
                         must be played. You CANT start a round by playing more than 1 card: a Derby.
                     </p>
 
-                    <h3 className="rules">-Refuel:</h3>
+                    <h3 className="rules">Refuel:</h3>
 
                     <p className="rules">
                         If the game started with 12 cards per person then once you have the refuel number of cards in your
@@ -370,7 +372,7 @@ class Landing extends Component {
                         amount.
                     </p>
 
-                    <h3 className="rules">-Normal Play: 1 card play where folding is present</h3>
+                    <h3 className="rules">Normal Play: 1 card play where folding is present</h3>
 
                     <p className="rules">
                         The normal sequence of play is to go clockwise from the winner of the last round.
@@ -378,16 +380,16 @@ class Landing extends Component {
                         have exactly 4 options:
                     </p>
                     <ul className="rules">
-                        <li>#1 you can play a better card then the previous card.</li>
-                        <li>
+                        <div>#1 you can play a better card then the previous card.</div>
+                        <div>
                             #2 play a card of the same value: this means you initiate a Battle or a Sandwich
                             if you play multiple cards of the same value of the last card played.
-                        </li>
-                        <li>#3 play a 9 as a wild card.</li>
-                        <li>#4 Fold</li>
+                        </div>
+                        <div>#3 play a 9 as a wild card.</div>
+                        <div>#4 Fold</div>
                     </ul>
 
-                    <h3 className="rules">-Folding:</h3>
+                    <h3 className="rules">Folding:</h3>
 
                     <p className="rules">
                         If a player cannot beat, or does not want to play/beat the previous single card he must fold and
@@ -395,7 +397,7 @@ class Landing extends Component {
                         the deck (folding many cards can be strategic for refueling/building a better hand).
                     </p>
 
-                    <h3 className="rules">-Battling:</h3>
+                    <h3 className="rules">Battling:</h3>
 
                     <p className="rules">
                         If the card played is of the same value as the previous card it is a Battle. When a Battle
@@ -409,7 +411,7 @@ class Landing extends Component {
                         using just one card as usual. In a Derby you can Battle someone out of turn.
                     </p>
 
-                    <h3 className="rules">-Derby: no folding, just playing and passing</h3>
+                    <h3 className="rules">Derby: no folding, just playing and passing</h3>
 
                     <p className="rules">
                         A Derby occurs when someone has 2, 3, 4 or more of the same valued card in their hand. Once a Derby
@@ -425,7 +427,7 @@ class Landing extends Component {
                         if the same or more are played: 3 8s are played cant play 1 or 2 aces, need 3 (or more if you want).
                     </p>
 
-                    <h3 className="rules">-The Nine:</h3>
+                    <h3 className="rules">The Nine:</h3>
 
                     <p className="rules">
                         If a 9 is played, it can act as a regular nine, or, it can be played as a wild card that changes the
@@ -447,7 +449,7 @@ class Landing extends Component {
                         the wild 9s switching cancels out since 2 are played.
                     </p>
 
-                    <h3 className="rules">-The Ace:</h3>
+                    <h3 className="rules">The Ace:</h3>
 
                     <p className="rules">
                         The ace beats any single card (regardless of higher or lower value, it beats a king in higher
@@ -457,7 +459,7 @@ class Landing extends Component {
                         and so on. If multiple are played in a Derby then they automatically win the round on the spot.
                     </p>
 
-                    <h3 className="rules">-The Joker:</h3>
+                    <h3 className="rules">The Joker:</h3>
 
                     <p className="rules">
                         Can take on any value 2 through king. Cannot become a wild 9 or Ace. Can also be used as a
@@ -466,20 +468,20 @@ class Landing extends Component {
                         before flipping.
                     </p>
 
-                    <h3 className="rules">-Sandwiching: the most annoying and fun part of the game</h3>
+                    <h3 className="rules">Sandwiching: the most annoying and fun part of the game</h3>
 
                     <p className="rules">There are two ways to Sandwich another player/multiple players:</p>
                     <ul className="rules">
-                        <li>
+                        <div>
                             #1 your cards surround their card/s ex: you play a 7, next person Battles
                             you with a 7, you play another 7, they are now sandwiched.
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             #2 your cards (multiple) are played on top of their card/s (you have to have
                             played more of a same valued card then the previous play ex: last person plays
                             a 5 you sandwich her with 2 5's or last person plays 3 4's in a Derby and you
                             sandwich him with 4 4's).
-                        </li>
+                        </div>
                     </ul>
 
                     <p className="rules">
@@ -490,7 +492,7 @@ class Landing extends Component {
                         cannot play out of turn/Battle that person: a sandwich is basically a modified Battle.
                     </p>
 
-                    <h3 className="rules">-Un/re-sandwiching:</h3>
+                    <h3 className="rules">Un/re-sandwiching:</h3>
 
                     <p className="rules">
                         If you get/are sandwiched and you have another of that same card or a joker you can play it and you
@@ -510,89 +512,89 @@ class Landing extends Component {
                     <h3 className="rules">Example #1, 3 person gameplay (no derby, battle, or sandwich):</h3>
 
                     <ul className="rules">
-                        <li>
+                        <div>
                             Player #1 won the beginning Battle or started the online game: he played a queen, player #2 played
                             a 10 and player #3 played a 6 so player #1 starts next round and wins 3 points since card pile consisted
                             of 3 cards.
-                        </li>
-                        <li>Player #1 plays a 6 to start the round.</li>
-                        <li>
+                        </div>
+                        <div>Player #1 plays a 6 to start the round.</div>
+                        <div>
                             Player #2 (clockwise from person 1) plays a 7 (if he wanted to battle, he would play a 6, and if
                             player #3 wanted to jump in out-of-turn to battle player #1 he would have played a 6 before person
                             2 played a card. If player #2 played a 6 player #3 could also join their battle if he plays a 6
-                            too => 3 person battle).
-                        </li>
-                        <li>Player #2 has played a 7.</li>
-                        <li>
+                            too = 3 person battle).
+                        </div>
+                        <div>Player #2 has played a 7.</div>
+                        <div>
                             Player #3 although he could beat the 7 with a queen he has decides not to play and folds a card face down
                             (he is out of the round).
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             Back to player #1 who plays a 9 as a wild card: this reverses the card value so lower cards are now
                             better (turn 9 face down to represent it as a wild card and it does not have a value so next person to
                             go has to play against player #2's Queen since it was the last play of value.
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             Player #2 now has to beat himself since he played last valued card. He cannot play a 7 and Battle
                             himself (not allowed), nor can he play multiple 7s so he plays a 2.
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             Player #1 plays an Ace and wins the pile automatically, he now has a score of 6 for the number of
                             cards in the pile he won(wild 9 and folded cards count), and he will start next round.
-                        </li>
+                        </div>
                     </ul>
 
                     <h3 className="rules">Example #2, 3 person gameplay (derby):</h3>
 
                     <ul className="rules">
-                        <li>Player #1 starts round with a Jack.</li>
-                        <li>
+                        <div>Player #1 starts round with a Jack.</div>
+                        <div>
                             Player #2 plays 2 queens (playing 2 or 3 10s would not be allowed since to start a derby the
-                            value of your cards has to be better than that of the previous cards played => 10 is not better
+                            value of your cards has to be better than that of the previous cards played, 10 is not better
                             than Jack).
-                        </li>
-                        <li>Player #3 passes.</li>
-                        <li>Player #1 plays 2 Kings.</li>
-                        <li>Player #2 passes.</li>
-                        <li>
-                            Player #3 plays 3 4s (4 is lower than King but since the derby has already been started, any larger-card-number play beats a play with fewer cards -> there are 3 4s and only 2 Kings).
-                        </li>
-                        <li>Player #1 passes.</li>
-                        <li>Player #2 passes.</li>
-                        <li>Player #3 is up but his 3 4s are last played so he wins 8 points (passes do not count as points).</li>
+                        </div>
+                        <div>Player #3 passes.</div>
+                        <div>Player #1 plays 2 Kings.</div>
+                        <div>Player #2 passes.</div>
+                        <div>
+                            Player #3 plays 3 4s (4 is lower than King but since the derby has already been started, any larger-card-number play beats a play with fewer cards, there are 3 4's and only 2 Kings).
+                        </div>
+                        <div>Player #1 passes.</div>
+                        <div>Player #2 passes.</div>
+                        <div>Player #3 is up but his 3 4s are last played so he wins 8 points (passes do not count as points).</div>
                    </ul>
 
                    <h3 className="rules">Example #3, 4 person gameplay (sandwiching and battle):</h3>
 
                    <ul className="rules">
-                      <li>Player #1 starts round with a 4.</li>
-                      <li>
-                          Player #3 jumps in out of turn to play 3 4s sandwiching player #1 (3 4s > 1 4, player #3 could have
+                      <div>Player #1 starts round with a 4.</div>
+                      <div>
+                          Player #3 jumps in out of turn to play 3 4s sandwiching player #1 (3 4's is more than 1 4, player #3 could have
                           sandwiched with 2 4s as well).
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           If player #1 plays a 4 he is un-sandwiched and sandwiches player #3 back, but if player #2 plays a
                           card of Different Value before player #1 un-sandwiches himself, player #1 is out (in the app you wait
                           to see if a player can un-sandwich himself before moving on to next player). If player #2 plays a card
                           of Same Value, the sandwiching process continues and player #1 still has a chance/time to un-sandwich
                           himself. In this case playing a card of Different Value moves on from the sandwiching process.
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           Anyway, player #1 un-sandwiches himself and sandwiches player #3 by playing a 4. Player #3 is now out
                           unless he can un-sandwich himself.
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           Player #4 comes in out of turn and plays 2 4s (this game is being played with more than 1 deck) and
                           sandwiches player #1, player #3 is still sandwiched. This is possible because the last play is player
                           #1's single 4, and player #4's 2 4s are of same value and larger quantity so they sandwich player #1.
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           At this point player #3 can still un-sandwich himself and sandwich player #1 and player #4 if he plays a
                           single 4 because his previous 4 play and his next 4 play will wrap around player #4's 2 4s, but player #3
                           does not have any other 4s so he is out. Player #1 cannot un-sandwich himself either, so he is out too by
                           not having the cards to un/re-sandwich.
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           Player #2 is up and plays 2 4s (he actually plays 1 4 and uses a joker to become the other 4), this
                           initiates a Battle against player #4. If player #2 had played 3 4s, player 4 would have been sandwiched,
                           and if player #2 had played 1 4 it would not be allowed. Note: (in real life/not app) after player #4
@@ -604,28 +606,28 @@ class Landing extends Component {
                           player #2 played 4s still (you can sandwich people Battling: in the app if a Battling player plays a card
                            down but then gets sandwiched, that card is lost and counts towards the point total at the end but in real
                            life you can take that card back into your hand).
-                      </li>
-                      <li>
+                      </div>
+                      <div>
                           Anyway, Player #2 had played 2 4s to Battle and now plays a wild 9 face down as his Battle card.
-                      </li>
-                      <li>Player #3 plays a king face down as his Battle card.</li>
-                      <li>
+                      </div>
+                      <div>Player #3 plays a king face down as his Battle card.</div>
+                      <div>
                           Both flip and player #3 wins but starting next turn lower cards are better since player #2 played a wild
                           9 and switched the direction from higher is better to lower is better.
-                      </li>
+                      </div>
                    </ul>
 
                    <p className="rules">This is what the play stack looks like for that round:</p>
                    <ul className="rules">
-                      <li>#1: [4]</li>
-                      <li>#3: [4, 4, 4]</li>
-                      <li>#1: [4]</li>
-                      <li>#4: [4, 4]</li>
-                      <li>#2: [4, Joker]</li>
-                      <li>#2: [wild 9]</li>
-                      <li>#3: [King]</li>
-                      <li>Battle is now over but: lower cards are now better from now on because of #2's wild 9</li>
-                      <li>#3 wins round and 11 points because he/she won the battle: a wild 9 can never win a battle</li>
+                      <div>#1: [4]</div>
+                      <div>#3: [4, 4, 4]</div>
+                      <div>#1: [4]</div>
+                      <div>#4: [4, 4]</div>
+                      <div>#2: [4, Joker]</div>
+                      <div>#2: [wild 9]</div>
+                      <div>#3: [King]</div>
+                      <div>Battle is now over but: lower cards are now better from now on because of #2's wild 9</div>
+                      <div>#3 wins round and 11 points because he/she won the battle: a wild 9 can never win a battle</div>
                    </ul>
 
                    <p className="rules">(C)opyright 2019 Tristan Le Veille</p>

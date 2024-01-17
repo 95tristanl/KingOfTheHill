@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import LandingPage from "./components/landingPage.js";
-import GameRoomPage from "./components/gameRoomPage.js";
+import LandingPage from "./pages/Landing.js";
+import GameRoomPage from "./pages/GameRoom.js";
 import './app.css';
+
+const BACKOFF_MULTIPLIER = 2;
 
 
 class App extends Component {
@@ -16,7 +18,7 @@ class App extends Component {
             init_data: {}, // when a player creates or joins a room, this is the current
                            // state/data of the game (returned immediately by the server)
                            // before it has been started by the lord
-            backoffIncrement: 2
+            backoffValue: BACKOFF_MULTIPLIER
         };
     }
 
@@ -25,20 +27,18 @@ class App extends Component {
     }
 
     websocketSetup = () => {
-        const webSocket = new WebSocket(process.env.WEBSOCKET_URL);
+        const webSocket = new WebSocket(process.env.NODE_ENV === "prod" ? process.env.WEBSOCKET_URL : `ws://localhost:${process.env.WS_PORT}`);
 
         webSocket.onopen = (event) => {
-            console.log('Websocket OPEN');
+            console.log('Websocket Open');
         };
 
         webSocket.onerror = (event) => {
-            console.log('Websocket ERROR!');
-            //console.log(event);
+            console.log('Websocket Error!');
         };
 
         webSocket.onclose = (event) => {
-            console.log('Websocket CLOSED');
-            console.log("Will retry connect...");
+            console.log('Websocket Closed!');
             this.multiplicativeBackoffReconnect();
         };
 
@@ -46,13 +46,14 @@ class App extends Component {
     }
 
     multiplicativeBackoffReconnect = () => {
+        console.log("Try reconnect...");
         try {
-            const backoffIncrement = this.state.backoffIncrement;
+            const backoffValue = this.state.backoffValue;
             setTimeout(() => {
                 console.log("Retry connect...");
                 this.websocketSetup();
-            }, backoffIncrement * 1000);
-            this.setState({backoffIncrement: backoffIncrement * 2});
+            }, backoffValue * 1000);
+            this.setState({backoffValue: backoffValue * BACKOFF_MULTIPLIER});
         } catch (e) {
             console.log(e);
         }

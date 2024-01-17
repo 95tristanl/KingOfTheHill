@@ -3,6 +3,10 @@
     margin: 0 0 0 0px;
 }
 
+p, div, h1, h3 {
+    font-family: geneva;
+}
+
 .app__container {
     background-color: #7F7C6A;
     overflow-y: hidden;
@@ -21,7 +25,6 @@
     padding: 0 0 0 0px;
     margin: 0 0 0 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
     font-size: 32px;
 }
@@ -32,7 +35,6 @@
     padding: 0 0 0 0px;
     margin: 0 0 0 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
     font-size: 24px;
 }
@@ -80,7 +82,6 @@
     padding: 0 0 0 0px;
     margin: 0 0 0 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
 }
 
@@ -111,7 +112,6 @@
     padding: 0 0 0 0px;
     margin: 0 0 0 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
 }
 
@@ -130,6 +130,7 @@
     height: 25px;
     border-radius: 6px;
     border: 2px solid black;
+    padding-left: 10px;
 }
 
 .landing__inputField:focus { outline: 0; }
@@ -151,7 +152,6 @@
 
 #landing__error_text {
     color: red;
-    font-family: geneva;
     font-weight: normal;
     font-size: 16px;
     padding: 0;
@@ -173,7 +173,6 @@
     padding: 0 0 0 0px;
     margin: 0 0 0 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
     font-size: 18px;
 }
@@ -200,7 +199,6 @@
 }
 
 .landing__btnClient {
-    font-family: geneva;
     font-weight: normal;
     display: flex;
     align-items: center;
@@ -266,7 +264,6 @@
 .navbar_title {
     padding: 0;
     margin: 0;
-    font-family: geneva;
     font-weight: normal;
     font-size: 20px;
     font-style: bold;
@@ -285,7 +282,6 @@
     padding: 0;
     margin: 0;
     color: black;
-    font-family: geneva;
     font-weight: normal;
 }
 
@@ -373,7 +369,6 @@
   transition-duration: 0.4s;
   cursor: pointer;
   outline: 0;
-  font-family: geneva;
   font-weight: normal;
   height: 35px;
 }
@@ -470,7 +465,6 @@
 }
 
 .cardPile_text {
-    font-family: geneva;
     font-weight: normal;
     width: 105px;
     height: 35px;
@@ -497,6 +491,16 @@
     display: none;
 }
 
+.cardPileRow2 {
+    display: flex;
+    align-items: center;
+    margin: 25px 0px 25px 0px;
+    overflow-x: scroll;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 .move_div {
     border-radius: 10px;
     padding: 5px 5px 5px 5px;
@@ -515,15 +519,13 @@
 .move_card_text_top {
     margin: 0px 0px 0px 5px;
     color: white;
-    font-family: geneva;
     font-weight: normal;
     font-size: 14px;
 }
 
-.move_card_text_top_battle {
+.move_card_text_top_battleSandwich {
     margin: 5px 0px 5px 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
     font-size: 14px;
 }
@@ -536,7 +538,6 @@
 .move_card_text_bottom {
     margin: 1px 5px 0px 0px;
     color: black;
-    font-family: geneva;
     font-weight: normal;
     font-size: 14px;
 }
@@ -566,7 +567,6 @@
     align-items: center;
     height: 35px;
     padding: 0px 20px 0px 20px;
-    font-family: geneva;
     font-weight: normal;
 }
 
@@ -579,7 +579,6 @@
 }
 
 .yourHand_text {
-    font-family: geneva;
     font-weight: normal;
     margin: 0px 0px 0px 0px;
     width: 105px;
@@ -599,7 +598,6 @@
 }
 
 .Joker_cur_option {
-    font-family: geneva;
     font-weight: normal;
     font-size: 12px;
     margin: 0px 0px 4px 0px;
@@ -620,7 +618,6 @@
 .Joker_option {
     margin: 0px 0px 0px 0px;
     border-radius: 2px;
-    font-family: geneva;
     font-weight: normal;
     font-size: 12px;
     padding: 0px 0px 0px 10px;
@@ -648,7 +645,6 @@
     text-align: center;
     vertical-align: middle;
     line-height: 20px;
-    font-family: geneva;
     padding: 5px 8px 0px 8px;
     border: 2px solid black;
     border-radius: 12px;
@@ -674,7 +670,6 @@
     width: 45px;
     height: 45px;
     color: black;
-    font-family: geneva;
     font-size: 16px;
 }
 
@@ -755,7 +750,73 @@
 
 .Chat_list_item {
     margin: 0px 0px 5px 0px;
-    font-family: geneva;
     font-weight: normal;
     font-size: 14px;
+}
+
+/* alert modal */
+
+.alertModalBackdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ 
+.alertModal {
+    width: 400px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EAA754;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 2px black;
+}
+
+.alertModalCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.alertModalTitle {
+    margin: 0px 0px 0px 0px;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.alertModalText {
+    margin: 20px 0px 0px 0px;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    width: 360px;
+}
+
+.alertModalCloseBtn {
+    margin: 30px 0px 0px 0px;
+    font-weight: normal;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 70px;
+    height: 25px;
+    background-color: #7F7C6A;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.alertModalCloseBtn:hover {
+    color: white;
+    border: 1px solid white;
+    width: 72px;
 }
